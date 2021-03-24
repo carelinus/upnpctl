@@ -17,6 +17,7 @@ var VERSION string = "0.0.0" //set via ldflags
 
 var helpFooter = `
 	  -v, verbose logs
+	  -1, use first found UPnP device for add/rem
 
 	Read more: https://github.com/jpillora/upnpctl
 `
@@ -74,6 +75,7 @@ var rem = command("rem")
 
 func main() {
 	v := flag.Bool("v", false, "")
+	useFirst := flag.Bool("1", false, "")
 	flag.Usage = func() {
 		display(help)
 	}
@@ -153,7 +155,7 @@ func main() {
 	}
 
 	if *id == "" {
-		if len(cs) == 1 {
+		if len(cs) == 1 || *useFirst {
 			c = cs[0]
 		} else {
 			fmt.Printf("The --id option is required as there is more than one UPnP device:\n")
