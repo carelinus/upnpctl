@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jpillora/upnpctl/upnp" //vendored
+	"github.com/carelinus/upnpctl/upnp" //vendored
 )
 
 var VERSION string = "0.0.0" //set via ldflags
