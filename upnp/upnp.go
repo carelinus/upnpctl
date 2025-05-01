@@ -496,7 +496,9 @@ func soapRequest(url, service, function, message string) ([]byte, error) {
 
 	if Debug {
 		l.Println("SOAP Request URL: " + url)
-		l.Println("SOAP Action: " + req.Header.Get("SOAPAction"))
+		soapAction := strings.ReplaceAll(req.Header.Get("SOAPAction"), "\n", "")
+		soapAction = strings.ReplaceAll(soapAction, "\r", "")
+		l.Println("SOAP Action: " + soapAction)
 		l.Println("SOAP Request:\n\n" + body)
 	}
 
